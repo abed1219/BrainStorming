@@ -78,7 +78,6 @@
 		751B99C127D693CA00CFE5BD = {
 			isa = PBXGroup;
 			children = (
-				7525B27827D8B6F500E4A87D /* GameViewModel.swift */,
 				751B99CC27D693CA00CFE5BD /* Tic-Tac-Toe */,
 				751B99DD27D693CB00CFE5BD /* Tic-Tac-ToeTests */,
 				751B99E727D693CB00CFE5BD /* Tic-Tac-ToeUITests */,
@@ -101,6 +100,7 @@
 			children = (
 				751B99CD27D693CA00CFE5BD /* Tic_Tac_ToeApp.swift */,
 				751B99CF27D693CA00CFE5BD /* GameView.swift */,
+				7525B27827D8B6F500E4A87D /* GameViewModel.swift */,
 				751B99F727D6A2DA00CFE5BD /* Alerts.swift */,
 				751B99D127D693CB00CFE5BD /* Assets.xcassets */,
 				751B99D327D693CB00CFE5BD /* Preview Content */,
