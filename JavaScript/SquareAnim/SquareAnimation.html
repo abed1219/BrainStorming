@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<style>
+    /* Some CSS :) */
+    #midPlayGround {
+        width: 500px;
+        height: 500px;
+        position: relative;
+        background: rgb(219, 220, 220);
+        margin-top: 0;
+        margin-right: auto;
+        margin-bottom: 0;
+        margin-left: auto;
+        border-radius: 10px;
+        border: 4px double #cccccc;
+        color: #eeeeee;
+    }
+
+    /*One square - 4 variants?*/
+    #redSquare {
+        display: none;
+
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: rgb(255, 94, 55);
+    }
+
+    #yellowSquare {
+        display: none;
+
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: rgb(245, 188, 66);
+    }
+
+    #blueSquare {
+        display: none;
+
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: rgb(72, 164, 234);
+    }
+
+    #greenSquare {
+        display: none;
+
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        background-color: rgb(142, 186, 58);
+    }
+
+    .preloader {
+        align-items: center;
+        background: #FFF;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        position: fixed;
+        top: 0;
+        transition: opacity 0.9s linear;
+        height: 100vh;
+        width: 100%;
+        z-index: 9999;
+        opacity: 1;
+        transform: opacity 1s linear infinite;
+        animation: opacity 1s linear infinite
+    }
+
+    button {
+        /*display: grid;*/
+        overflow: hidden;
+        background-color: #9e9e9e;
+        border-radius: 1000px;
+        border: 3px double #e1dbdb;
+        color: #2f2f2f;
+        text-align: center;
+        font-size: 16px;
+        font-family: Courier;
+        padding: 20px;
+        width: 100px;
+        transition: all 0.4s;
+        cursor: pointer;
+        margin: 50px;
+    }
+
+    button:hover {
+        background-color: #09090977;
+        font-size: 15px;
+        border-radius: 900px;
+        transform: translateY(3px);
+
+    }
+
+    button:hover span {
+        padding-right: 25px;
+
+    }
+
+    button:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+
+    button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(15px);
+    }
+</style>
+
+<title>Squares Logo Animation</title>
+
+<div class="preloader"></div>
+
+<body style="background-image: url(Resources/shattered.png)">
+    <script src="AnimateSquares.js"></script>
+    <script type="text/javascript"></script>
+    <center
+        style="font-size:19px;font-weight:bold; font-family:courier; margin:1rem; margin-left:auto;margin-right:auto">
+        Interactive Hangman</center>
+    <!-- IDEA: generate '_' automatically for every word  -->
+    <center style="font-size:18px;font-family:courier;">Guess which boxes contain the missing part of the word
+        click the button to reveal the boxes </center>
+    <center>
+        <button style="margin: 2rem;" onclick="animateSquare()">Start</button>
+        <button style="margin: 0.3rem;" onclick="document.location.reload()">Reset
+        </button>
+    </center>
+    <center
+        style="font-size:19px;font-weight:bold; font-family:courier; margin:1rem; margin-left:auto;margin-right:auto">
+        The word is
+        Mi_ _ _so_ _ </center>
+    <center style="margin-top:1.5rem; font-family:courier; font-size:12px;"> Easter egg: Try to find the redirecting
+        squares</center>
+
+    <div id="midPlayGround" style="margin-top:2rem;">
+        <div id="redSquare" class="hidden"
+            style="border:none;color:rgb(65, 65, 65);font-family:'courier';vertical-align:middle;text-align:center;line-height:48px;"
+            onclick="location.assign('http://www.microsoft.com')" onmouseover="innerHTML = 'Mi'"> </div>
+
+        <div id="yellowSquare"
+            style="color:rgb(65, 65, 65);font-family:'courier';vertical-align:middle;text-align:center;line-height:48px;"
+            onclick="location.reload()" onmouseover="innerHTML = 'ft'"></div>
+
+        <div id="blueSquare"
+            style="color:rgb(65, 65, 65);font-family:'courier';vertical-align:middle;text-align:center;line-height:48px;"
+            onclick="location.replace('http://www.google.com')" onmouseover="innerHTML = 'so'">
+        </div>
+
+        <div id="greenSquare"
+            style="color:rgb(65, 65, 65);font-family:'courier';vertical-align:middle;text-align:center;line-height:48px;"
+            onmouseover="innerHTML = 'cro'">
+        </div>
+    </div>
+</body>
+
+</html>

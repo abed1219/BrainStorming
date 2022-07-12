@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ISS</title>
+</head>
+
+<body>
+    <center id="name" style="font-family:courier;font-size:60px;">ISS in Real-Time</center>
+    <br></br>
+    <div style="font-family:courier;font-size:50px;">
+        Altitude: <span id="alt" style="font-size:40px;"></span>˚<br /><br />
+        Longitude: <span id="lon" style="font-size:40px;"></span>˚ <br /><br />
+        Latitude: <span id="lat" style="font-size:40px;"></span>˚
+    </div>
+    <br></br>
+    <input id="txtid" style="resize:none;font-size:20px;margin-bottom:1rem;"></input>
+    <button style="font-size:20px;" onclick="_sendArgsVar()">Submit</button>
+    <div id="notification" style="color:green;font-size:18px;font-family:courier;"></div>
+
+
+    <!--* 
+    At first it was basic, no live value updates, but after using setInterval().
+    now its gonna fetch data every x seconds, we can do that also by chaining promises with .then(),
+    but using await is cleaner.
+
+    Promises contain value and state fields, state can be fulfilled, rejected, pending, settled.
+-->
+    <script>
+        const ISS_api_URL = "https://api.wheretheiss.at/v1/satellites/25544";
+        var alt, lat, lon;
+        var _sendArgsVar;
+        async function getISS() {
+            setInterval(async function () {                      // async => to use the await keyword, setInterval to update values every x amount of time
+                const ISS_data = await fetch(ISS_api_URL);       // fetch data from the given url, awaits for promise to settle
+                const DATA = await ISS_data.json();              // convert data to JSON (javascript object notation)
+                const { altitude, latitude, longitude } = DATA;  // do JS destructuring for alt,lat lon !!thats why we love JSON!!
+                alt = altitude; lat = latitude; lon = longitude;
+                //print values using HTML DOM
+                document.getElementById("alt").textContent = altitude.toFixed(2);
+                document.getElementById("lon").textContent = longitude.toFixed(2);
+                document.getElementById("lat").textContent = latitude.toFixed(2);
+
+                var notification = document.getElementById("notification");
+
+                _sendArgsVar = async function _SendArgs() {
+                    const UserIn = document.getElementById("txtid").value;
+                    const dat = { alt, lat, lon, UserIn }; // get data from ISS api
+                    const options = {     //package it as a post
+                        method: 'POST',
+                        headers: {
+                            'Content-type': 'application/json' // to know that the data sent is a JSON
+                            // send more metadata with the data
+                        },
+                        body: JSON.stringify(dat),   // convert data to string and send it as JSON
+                        UserInput: UserIn
+                    };
+                    const FetchResponse = await fetch('/api', options);  //send data to my web server, and send a response back
+                    const jsonResponse = await FetchResponse.json();
+                    console.log(jsonResponse);
+                    notification.innerHTML = "Your request has been sent!";
+
+                }
+            }, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', getISS());
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "square_anim",
+  "version": "1.0.0",
+  "description": "Square game by Abed Nashif",
+  "main": "AnimateSquares.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "microsoft",
+    "square",
+    "animation"
+  ],
+  "author": "Abed Nashif",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

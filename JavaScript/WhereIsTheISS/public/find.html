@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Queried Data</title>
+</head>
+
+<body>
+    <center>
+        <h1 style="font-size:50px;font-family:courier;">Queried Data</h1>
+        <button style="font-size:40px;margin-bottom:2rem;font-family:courier;" onclick="getQueries()">Get
+            Queries</button>
+        <div id="root" style="font-family:courier;font-size: 18px;"></div>
+
+        <script type="text/javascript">
+            async function getQueries() {
+                const response = await fetch('/api'); // fetch the data from /api and save it in response
+                const queries = await response.json();
+                const empty = document.createElement('div');
+                let flag = 0;
+                let root = document.getElementById("root");
+
+                for (q of queries) {
+                    flag = 1;
+                    console.log(q);
+                }
+                if (flag == 1) {
+                    root.style.color = 'green';
+                    root.innerHTML = "Look in the console";
+                }
+                else {
+                    root.style.color = 'red';
+                    root.innerHTML = "The Database is empty!";
+                }
+                //document.body.append(root);
+            }
+        </script>
+    </center>
+</body>
+
+</html>
